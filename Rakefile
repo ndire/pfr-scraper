@@ -22,7 +22,7 @@ task :dump, [:year] do |t, args|
   cg = CoachGraph.new
   cg.read('data', args.year)
   cg.for_year(args.year).each{ |t| 
-    puts "#{t['team']} #{t['Head']['id']}"
+    puts "#{t['team']} #{t['Head']['name']}"
   }
 end
 
@@ -31,5 +31,6 @@ task :write, [:year]  do |t, args|
 
   cg = CoachGraph.new
   cg.read('data', years)
-  cg.as_undirected.write_gml('coaches.gml')
+  cg.as_tree.write_gml('coaches_tree.gml')
+  cg.as_peer.write_gml('coaches_peer.gml')
 end
