@@ -2,6 +2,7 @@
 require_relative 'pfr_scraper'
 require_relative 'coach_graph'
 
+'Scrape pro-football-reference.com and write out cached JSON files'
 task :download, [:year] do |t, args|
   years = args.year ? [ args.year ] : (1980..2013).to_a
 
@@ -18,6 +19,7 @@ task :download, [:year] do |t, args|
   end
 end
 
+'Dump data for a particular year'
 task :dump, [:year] do |t, args|
   cg = CoachGraph.new
   cg.read('data', args.year)
@@ -26,6 +28,7 @@ task :dump, [:year] do |t, args|
   }
 end
 
+'Write out GML files for cache data'
 task :write, [:year]  do |t, args|
   years = args.year ? [ args.year ] : (1980..2013).to_a
 
